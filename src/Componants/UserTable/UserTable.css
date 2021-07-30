@@ -1,0 +1,16 @@
+.userTable{
+    margin-top: 33px;
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+    min-height: fit-content;
+    max-height: 315px;
+    width: 80%;
+}
+.detailButton{
+    margin-right: 13px;
+    margin-left: -6px;
+}
+.addUser{
+    margin-left: 68%;
+}

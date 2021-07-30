@@ -1,0 +1,17 @@
+.netWorkTable{
+    margin-top: 33px;
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+    min-height: fit-content;
+    max-height: 315px;
+    width: 60%;
+}
+.detailButton{
+    margin-right: 13px;
+    margin-left: -6px;
+}
+.network{
+    margin-left: 45%;
+    width: 18%;
+}
