@@ -8,7 +8,6 @@ const UserDetail = () => {
 
   const { userData } = useContext(AuthContext);
   const { getId } = useContext(AuthContext);
-  
   const [openModel, setOpenModel] = useState(false);
 
   const showModal = () => {
@@ -93,10 +92,11 @@ const UserDetail = () => {
                   </div>
     
                 </div>
+                {openModel && <Model closeModel={closeModal} type="edit" data={user} />}
               </div>
                 ))}
 
-                {openModel && <Model closeModel={closeModal} showModal={showModal} getId={getId} />}
+               
             </div>
         
         </div>

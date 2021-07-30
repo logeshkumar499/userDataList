@@ -10,6 +10,7 @@ const NetWorkTable = () => {
     
     const showModal = () => {
         setOpenModel(true);
+        
       }
     
     const  closeModal=() => {

@@ -5,13 +5,11 @@ import "./NetWorkModel.css";
 
 const NetWorkModal= (props) => {
     const closeModel = props.closeModel;
-    
-    console.log("data", closeModel);
 
     // const networkInputRef = useRef();
     // const descriptionInputRef = useRef();
     const [enteredNetwork, setNetwork] = useState('');
-      const [enteredDescription, setDescription] = useState('');
+    const [enteredDescription, setDescription] = useState('');
     const history = useHistory();
   
     const authCtx = useContext(AuthContext);
@@ -20,6 +18,7 @@ const NetWorkModal= (props) => {
       const [networkError, setNetworkError] = useState(false);
       const [descriptionError, setDescriptionError] = useState(false);
       
+
       const networkChangeHandler = (event) => {
         event.preventDefault();
         setNetwork(event.target.value);

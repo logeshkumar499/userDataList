@@ -8,7 +8,7 @@ const Login = () => {
     const history = useHistory();
     
     const authCtx = useContext(AuthContext);
-    const {isLoggedIn ,showAlert} = useContext(AuthContext);
+    // const {isLoggedIn ,showAlert} = useContext(AuthContext);
     const [show, setAlert] = useState(false);
     const [enteredName, setEnteredName] = useState('');
     const [enteredPassword, setEnteredPassword] = useState('');
@@ -16,14 +16,15 @@ const Login = () => {
     const [userError, setUserError] = useState(false);
     const [passwordError, setPasswordError] = useState(false);
 
+
     useEffect(() => {
-        if(isLoggedIn === false && showAlert === true){
+        if(authCtx.isLoggedIn === false && authCtx.showAlert === true){
           setAlert(true);
           setTimeout(()=> {
               setAlert(false);
           }, 5000)
       }
-    }, [isLoggedIn])
+    },[authCtx.isLoggedIn])
 
     const nameChangeHandler = (event) => {
         event.preventDefault();
@@ -54,11 +55,11 @@ const Login = () => {
 
     return (
         <div className={classes.center}>
-            { show && <div class="alert alert-warning" role="alert">
+            { show === true && <div className="alert alert-warning" role="alert">
                 Password is not mathch!
             </div>}
             <h1>Login</h1>
-            <form onSubmit={submitHandler} autocomplete="off">
+            <form onSubmit={submitHandler} >
                 <div className={classes.txt_field}>
                     <input type='text' id='name' required value={enteredName} 
                         onChange={nameChangeHandler} />

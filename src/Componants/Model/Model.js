@@ -1,4 +1,4 @@
-import { useRef, useContext, useState } from 'react';
+import { useRef, useContext, useState,useEffect } from 'react';
 import AuthContext from '../../store/auth-context';
 import { useHistory } from 'react-router-dom';
 import "./Model.css";
@@ -7,8 +7,9 @@ const Modal= (props) => {
   
   const authCtx = useContext(AuthContext);
   const closeModel = props.closeModel;
-    // const id = props.getId;
-    
+  const type = props.type;
+
+
     const nameInputRef = useRef();
     const passwordInputRef = useRef();
     const confirmPasswordInputRef = useRef();
@@ -18,13 +19,30 @@ const Modal= (props) => {
     const history = useHistory();
     
      // filter and a map - shorthand
-    const genreList = authCtx.userData 
-    .filter(user => user.id === id)
-    .map((name)  => name);
-  console.log(genreList[0].name);
-  if(genreList[0].id){
-    console.log("id is work");
+  //   const genreList = authCtx.userData 
+  //   .filter(user => user.id === id)
+  //   .map((name)  => name);
+  // console.log(genreList[0].name);
+  // if(genreList[0].id){
+  //   console.log("id is work");
+  // }
+  const name = props.data.name;
+  const password= props.data.password;
+  const confirmPassword = props.data.confirmPassword;
+  const status = props.data.status;
+  const role = props.data.role;
+  const data = props.data.data;
+  
+  useEffect(() => {
+    if(type === 'edit'){
+      nameInputRef.current.value = name;
+      passwordInputRef.current.value = password;
+      confirmPasswordInputRef.current.value = confirmPassword;
+      statusInputRef.current.value = status;
+      roleInputRef.current.value = role;
+      dataInputRef.current.value = data
   }
+})
 
       //validation
     const [usernameError, setUsernameError] = useState(false);
@@ -56,7 +74,6 @@ const Modal= (props) => {
         event.preventDefault();
         const checkJsonData = dataInputRef.current.value;
         setDataError(false);
-        // const tempData=JsonString(checkJsonData);
         if(JsonString(checkJsonData)){
             setJsonCheck(false);
         }
@@ -95,26 +112,32 @@ const Modal= (props) => {
           if(jsonCheck){
             return;
           } 
-        authCtx.addUser(enteredName,enteredPassword ,enteredRole ,enteredStatus,enteredData)
+
+        if (type === 'add'){  
+          authCtx.addUser(enteredName,enteredPassword ,enteredRole ,enteredStatus,enteredData)
+        }
+        if (type === 'edit'){  
+          authCtx.updateUser(props.data.id,enteredName,enteredPassword ,enteredRole ,enteredStatus,enteredData)
+        }
         nameInputRef.current.value = "";
         passwordInputRef.current.value = "";
         confirmPasswordInputRef.current.value = "";
         roleInputRef.current.value = "";
         statusInputRef.current.value = "";
         dataInputRef.current.value = "";
-        history.replace('/users');
-        
+        history.replace('/users');    
     }
 
   return (
     <div className="modalBackground">
       <div className="modalContainer">
         <div className="titleCloseBtn">
-          <h3>Craete User</h3>
+          {type ==='edit' && <h3>Edit User</h3>}
+          {type ==='add' && <h3>Craete User</h3>}
           <button onClick={closeModel}>X</button>
         </div>
         <div className="body">
-          <form className="row g-3" onSubmit={submitHandler} autocomplete="off">
+          <form className="row g-3" onSubmit={submitHandler} >
             <div className="col-md-6">
               <label>User Name</label>  
               <input type="text" className="form-control" 
@@ -127,7 +150,7 @@ const Modal= (props) => {
             <label>Role</label>
             <select className="form-select" required ref={roleInputRef}>
                 <option value="admin">Admin</option>
-              <option value="client">Client</option>
+                <option value="client">Client</option>
               </select>
             </div>
             <div className="col-md-6">

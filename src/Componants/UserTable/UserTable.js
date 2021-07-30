@@ -56,7 +56,7 @@ const UserTable = (props) => {
             <div className="addUser">
                 <button type="button" className="btn btn-warning " 
                 onClick={showModal}>Add New User</button>
-                {openModel && <Model closeModel={closeModal} />}
+                {openModel && <Model closeModel={closeModal} type='add' />}
             </div>
         </div>
     )
