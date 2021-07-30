@@ -34,16 +34,14 @@ export const AuthContextProvider = (props) => {
       let userName = userData[i].name;
       let userPassword = userData[i].password;
       
-      if(name !== userName && password !== userPassword){
-        setShowAlert(true);
-        setLoginData(false);
-      }
-      
+               
       if(name === userName && password === userPassword){
         setLoginData(true);
-        setShowAlert(false);
       }
-      
+      if(name !== userName && password !== userPassword){
+        setShowAlert(true);
+      }   
+
     }
   };
 
@@ -61,8 +59,8 @@ export const AuthContextProvider = (props) => {
     setGetId(id)
   }
   
-  const updateUserData = (id, updatedUser) => {
-    setUserData(userData.map((userData) => userData.id === id ? updatedUser : userData))
+  const updateUserData = (id, name, password, role, status, data) => {
+    setUserData(userData.map((userData) => userData.id === id ? {name, password, role, status, data} : userData))
   }
 
   const deleteUserData = (id) => {
@@ -75,8 +73,8 @@ export const AuthContextProvider = (props) => {
   const addNetworkData = (network, description) => {
     setNetworkData([...networkData , {id:Math.floor(Math.random()*100), network, description}])
   }
-  const updateNetworkData = (id, updatedNetwork) => {
-    setNetworkData(networkData.map((networkData) => networkData.id === id ? updatedNetwork : networkData))
+  const updateNetworkData = (id, network, description) => {
+    setNetworkData(networkData.map((networkData) => networkData.id === id ? {network, description} : networkData))
   }
   
   const deleteNetworkData = (id) => {
