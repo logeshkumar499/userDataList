@@ -1,13 +1,14 @@
 import React, { useContext, useState} from 'react';
 import AuthContext from '../../store/auth-context';
 import './UserDetailPage.css';
-import { Link } from "react-router-dom";
+import { Link,useParams } from "react-router-dom";
 import Model from '../Model/Model';
 
 const UserDetail = () => {
 
   const { userData } = useContext(AuthContext);
   const { getId } = useContext(AuthContext);
+  const {id}= useParams();
   const [openModel, setOpenModel] = useState(false);
 
   const showModal = () => {
@@ -25,7 +26,7 @@ const UserDetail = () => {
               <nav aria-label="breadcrumb" className="main-breadcrumb">
                 <ol className="breadcrumb">
                   <li className="breadcrumb-item"><Link to="/users/">User</Link></li>
-                  <li className="breadcrumb-item active" aria-current="page">User Details</li>
+                  <li className="breadcrumb-item active" aria-current="page">{id}</li>
                 </ol>
               </nav>
               {userData.filter(user => user.id === getId).map(user => (

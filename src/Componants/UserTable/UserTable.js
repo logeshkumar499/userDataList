@@ -40,7 +40,7 @@ const UserTable = (props) => {
                             <td>{data.status}</td>
                             <td>{data.data}</td>
                             <td>
-                                <Link to="/user/detail">
+                                <Link to={`/user/${data.id}`}>
                                 <button  onClick={() => userCtx.getUser(data.id)} type="button" className="btn btn-primary detailButton">
                                 Details</button></Link>
                                 

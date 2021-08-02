@@ -25,7 +25,7 @@ function App() {
               <UserTable />
             </Route>}
             
-            {authCtx.isLoggedIn && <Route path="/user/detail">
+            {authCtx.isLoggedIn && <Route path="/user/:id">
               <UserDetail />
             </Route>}
           

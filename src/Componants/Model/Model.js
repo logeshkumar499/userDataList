@@ -9,7 +9,6 @@ const Modal= (props) => {
   const closeModel = props.closeModel;
   const type = props.type;
 
-
     const nameInputRef = useRef();
     const passwordInputRef = useRef();
     const confirmPasswordInputRef = useRef();
@@ -26,21 +25,22 @@ const Modal= (props) => {
   // if(genreList[0].id){
   //   console.log("id is work");
   // }
-  const name = props.data.name;
-  const password= props.data.password;
-  const confirmPassword = props.data.confirmPassword;
-  const status = props.data.status;
-  const role = props.data.role;
-  const data = props.data.data;
+
+  // const name = props.data.name;
+  // const password= props.data.password;
+  // const confirmPassword = props.data.confirmPassword;
+  // const status = props.data.status;
+  // const role = props.data.role;
+  // const data = props.data.data;
   
   useEffect(() => {
     if(type === 'edit'){
-      nameInputRef.current.value = name;
-      passwordInputRef.current.value = password;
-      confirmPasswordInputRef.current.value = confirmPassword;
-      statusInputRef.current.value = status;
-      roleInputRef.current.value = role;
-      dataInputRef.current.value = data
+      nameInputRef.current.value = props.data.name;
+      passwordInputRef.current.value =  props.data.password;
+      confirmPasswordInputRef.current.value =  props.data.confirmPassword;
+      statusInputRef.current.value =  props.data.status;
+      roleInputRef.current.value =  props.data.role;
+      dataInputRef.current.value =  props.data.data
   }
 })
 
